@@ -1,5 +1,9 @@
 #!/bin/sh
 path=$(pwd)
+mkdir $path"/log"
+touch $path"/log/out.log"
+touch $path"/log/in.log"
+touch $path"/log/err.log"
 sed -i "/cd/c\cd $path" alligator_server.sh
 file_path=$path"/alligator_server.sh"
 echo $file_path
