@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /home/alligator/hydrogen
+cd /root/alligator/hydrogen
 python Server.py start
 date
 echo "Server is running"

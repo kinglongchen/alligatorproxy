@@ -8,5 +8,5 @@ class Public():
                        controller=wsgi.Resource(controller),  
                        action='get_projects_for_token',  
                        conditions=dict(method=['GET'])) 
-		mapper.resource('name','names',
+		mapper.resource('user','users',
 						controller=wsgi.Resource(controllers.TestDemo()))

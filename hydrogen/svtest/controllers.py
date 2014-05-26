@@ -16,7 +16,7 @@ class Tenant(Controller):
             'name': "test",
             'properties': "test"
         }
-class ListName(Controller):
+class TestDemo(Controller):
 	def __init__(self):
 		print "ListName!!!"
 	def index(self,req):
