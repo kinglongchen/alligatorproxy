@@ -18,33 +18,41 @@ class Tenant(Controller):
             'name': "test",
             'properties': "test"
         }
-class TestDemo(Controller):
+class Register(Controller):
 	def __init__(self):
 		self.keystone=ksclient.Client(auth_url="http://controller:35357/v2.0",username="admin",password="ADMIN_PASS",tenant_name="admin")
 		self.users=self.keystone.users
 		self.roles=self.keystone.roles
 		print "keystoneclient initialization successfully!"
 	def index(self,req):
-		return "auths test OK!!!"
+		is_exit = "false"
+		user_name=req.GET['user_name']
+		user_list=self.users.list()
+		for user in user_list:
+			print user.name
+			if user.name == user_name:
+				is_exit = "true"
+				print user.name
+				break
+		return is_exit
 	def show(self,req,id):
 		print "START"
 		print id
 		print "END"
 		return "Have id"+id
 	def create(self,req,body=None):
-		print "###########req.body"
-		#print body
-		print "###########req.POST"
-		print req.POST['user']
-		print "end"
-		#username="demouser2"
-		#userpasswd="12345"
-		#useremail="demouser2@qq.com"
+		username=body['user_name']
+		userpasswd=body['user_pw']
+		useremail=body['user_email']
+		role=body['role']
 		#demo role id:
-		#role_id="37b1edf63d6349eba5bbeb2c43cc6b66"
+		#default role:nuser
+		role_id="d0fd3717e94b41b1aed9856afa874a66"
+		if role=="dev":
+			role_id="2dcb04801b0c484faecd07ba066925a5"
 		#demo tenant id:
-		#tenant_id="2f11cefc7b1940bfb41598c70ae3bdf2"
-		#user=self.users.create(username,userpasswd,useremail)
+		tenant_id="2f11cefc7b1940bfb41598c70ae3bdf2"
+		user=self.users.create(username,userpasswd,useremail)
 		#print resp
-		#self.roles.add_user_role(user,role_id,tenant_id)
+		self.roles.add_user_role(user,role_id,tenant_id)
 		return "create user successfully!!!"

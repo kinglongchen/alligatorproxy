@@ -9,4 +9,4 @@ class Public():
                        action='get_projects_for_token',  
                        conditions=dict(method=['GET'])) 
 		mapper.resource('user','users',
-						controller=wsgi.Resource(controllers.TestDemo()))
+						controller=wsgi.Resource(controllers.Register()))
