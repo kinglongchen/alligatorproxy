@@ -31,9 +31,9 @@ def public_app_factory(global_conf, **local_conf):
     #conf = global_conf.copy()
     #conf.update(local_conf)
     return wsgi.ComposingRouter(wsgi.APIMapper(),
-                               [svtest.routers.Public(),
-                                auths.routers.Public(),
-                                svtest2.routers.SV2Public()])
+                               [#svtest.routers.Public(),
+                                auths.routers.Public()])
+                                #svtest2.routers.SV2Public()])
                                #token.routers.Router(),
                                #routers.VersionV2('public'),
                                #routers.Extension(False)])

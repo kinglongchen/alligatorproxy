@@ -29,10 +29,10 @@ class Register(Controller):
 		user_name=req.GET['user_name']
 		user_list=self.users.list()
 		for user in user_list:
-			print user.name
+			#print user.name
 			if user.name == user_name:
 				is_exit = "true"
-				print user.name
+				#print user.name
 				break
 		return is_exit
 	def show(self,req,id):
