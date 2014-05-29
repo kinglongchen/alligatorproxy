@@ -26,14 +26,16 @@ class MyRouterApp(wsgi.Router):
           super(MyRouterApp, self).__init__(mapper)
 
 #@fail_gracefully
-def public_app_factory(global_conf, **local_conf):
+def auth_app_factory(global_conf, **local_conf):
     #controllers.register_version('v2.0')
     #conf = global_conf.copy()
     #conf.update(local_conf)
     return wsgi.ComposingRouter(wsgi.APIMapper(),
                                [#svtest.routers.Public(),
-                                auths.routers.Public()])
-                                #svtest2.routers.SV2Public()])
+                                svtest2.routers.SV2Public()])
                                #token.routers.Router(),
                                #routers.VersionV2('public'),
                                #routers.Extension(False)])
+def public_app_factory(global_conf,**local_conf):
+    return wsgi.ComposingRouter(wsgi.APIMapper(),
+                                [auths.routers.Public()])
