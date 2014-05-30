@@ -17,5 +17,5 @@ def read_cached_file(filename, cache_info, reload_func=None):
             cache_info['data'] = fap.read()
         cache_info['mtime'] = mtime
         if reload_func:
-            reload_func(cache_info['data'])
+            return reload_func(cache_info['data'])
     return cache_info['data']

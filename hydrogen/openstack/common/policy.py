@@ -63,7 +63,7 @@ import urllib
 import six
 import urllib2
 
-from openstack.common.gettextutils import _
+#from openstack.common.gettextutils import _
 from openstack.common import jsonutils
 #from openstack.common import log as logging
 
@@ -108,6 +108,7 @@ class Rules(dict):
 
         return self[self.default_rule]
 
+'''
     def __str__(self):
         """Dumps a string representation of the rules."""
 
@@ -122,16 +123,15 @@ class Rules(dict):
 
         # Dump a pretty-printed JSON representation
         return jsonutils.dumps(out_rules, indent=4)
-
+'''
 
 # Really have to figure out a way to deprecate this
 def set_rules(rules):
     """Set the rules in use for policy checks."""
-
     global _rules
 
     _rules = rules
-
+    
 
 # Ditto
 def reset():
@@ -727,7 +727,6 @@ class RuleCheck(Check):
         """
         Recursively checks credentials based on the defined rules.
         """
-
         try:
             return _rules[self.match](target, creds)
         except KeyError:

@@ -1,5 +1,6 @@
 from openstack.common import policy
 from common import exceptions
+from common import utils
 _POLICY_PATH = None
 _POLICY_CACHE = {}
 ADMIN_CTX_POLICY = 'context_is_admin'
@@ -15,12 +16,13 @@ def init():
     global _POLICY_PATH
     global _POLICY_CACHE
     if not _POLICY_PATH:
-        _POLICY_PATH = utils.find_config_file({}, cfg.CONF.policy_file)
+        #_POLICY_PATH = utils.find_config_file({}, cfg.CONF.policy_file)
+        _POLICY_PATH = 'config/policy.json'
         if not _POLICY_PATH:
             raise exceptions.PolicyFileNotFound(path=cfg.CONF.policy_file)
     # pass _set_brain to read_cached_file so that the policy brain
     # is reset only if the file has changed
-    utils.read_cached_file(_POLICY_PATH, _POLICY_CACHE,
+    return utils.read_cached_file(_POLICY_PATH, _POLICY_CACHE,
                            reload_func=_set_rules)
 
 def _set_rules(data):
@@ -58,6 +60,7 @@ def _set_rules(data):
                             "not be enforced"), pol)
     '''
     policy.set_rules(policies)
+    return policies
 
 
 def _build_match_rule(action, target):

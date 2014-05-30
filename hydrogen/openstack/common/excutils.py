@@ -24,7 +24,7 @@ import traceback
 
 import six
 
-from openstack.common.gettextutils import _LE
+#from openstack.common.gettextutils import _LE
 
 
 class save_and_reraise_exception(object):
@@ -73,10 +73,11 @@ class save_and_reraise_exception(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         if exc_type is not None:
             if self.reraise:
-                logging.error(_LE('Original exception being dropped: %s'),
-                              traceback.format_exception(self.type_,
-                                                         self.value,
-                                                         self.tb))
+                pass
+                #logging.error(_LE('Original exception being dropped: %s'),
+                #              traceback.format_exception(self.type_,
+                #                                         self.value,
+                #                                         self.tb))
             return False
         if self.reraise:
             six.reraise(self.type_, self.value, self.tb)

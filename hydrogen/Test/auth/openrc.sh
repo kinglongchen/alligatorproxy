@@ -1,4 +1,4 @@
-export OS_USERNAME=admin
-export OS_PASSWORD=ADMIN_PASS
-export OS_TENANT_NAME=admin
+export OS_USERNAME=dev01
+export OS_PASSWORD=12345
+export OS_TENANT_NAME=demo
 export OS_AUTH_URL=http://controller:35357/v2.0
