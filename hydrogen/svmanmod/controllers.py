@@ -16,15 +16,15 @@ class Tenant(Controller):
             'name': "test",
             'properties': "test"
         }
-class TestDemo(Controller):
+class ServiceMan(Controller):
 	def __init__(self):
 		print "ListName!!!"
 	def index(self,req):
-		db_session=req.environ['db_session']
-		
 		return "list all resources"
 	def show(self,req,id):
 		print "START"
 		print id
 		print "END"
 		return "Have id"+id
+	def create(self,req,body=None):
+		pass

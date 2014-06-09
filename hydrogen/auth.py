@@ -23,7 +23,7 @@ class HydrogenKeystoneContext(object):
         # Use request_id if already set
         #req_id = req.environ.get(request_id.ENV_REQUEST_ID)
         ctx = context.Context(user_id, tenant_id, roles=roles,user_name=user_name)
-        req.environ['neutron.context'] = ctx
+        req.environ['hydrogen.context'] = ctx
         return self.app
     @classmethod
     def filter_factory(cls,global_conf,**kwargs):

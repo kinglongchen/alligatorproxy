@@ -17,7 +17,7 @@ def init():
     global _POLICY_CACHE
     if not _POLICY_PATH:
         #_POLICY_PATH = utils.find_config_file({}, cfg.CONF.policy_file)
-        _POLICY_PATH = 'config/policy.json'
+        _POLICY_PATH = '/root/alligator/hydrogen/config/policy.json'
         if not _POLICY_PATH:
             raise exceptions.PolicyFileNotFound(path=cfg.CONF.policy_file)
     # pass _set_brain to read_cached_file so that the policy brain

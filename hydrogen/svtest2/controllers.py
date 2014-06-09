@@ -4,8 +4,8 @@ import policy
 from common import exceptions
 class Hello(Controller):
 	def index(self,req):
-		context= req.environ['neutron.context']
-		target = {'test_id':123,'test_name':456}
+		context= req.environ['hydrogen.context']
+		target = {'tenant_id':'2f11cefc7b1940bfb41598c70ae3bdf2','test_name':456}
 		action = 'get_test_action'
 		policy.init()
 		try:
