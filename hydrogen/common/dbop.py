@@ -41,21 +41,25 @@ class Mysql(object):
 		self.cursor.execute(sql)
 		data = self.cursor.fetchall()
 		return data[0][0]
-	def insertsvtb(self,svname,user_id,sv_ip,sv_port):
-		sql = 'insert into svtb(sv_name,user_id,sv_ip,sv_port) values ("'+svname+'","'+user_id+'","'+sv_ip+'","'+sv_port+'");'
+	def insertsvtb(self,sv_name,vm_id,user_id,sv_lang,sv_desc):
+		sql = 'insert into sv_tb(sv_name,vm_id,user_id,sv_lang,sv_desc) values ("'+sv_name+'","'+vm_id+'","'+user_id+'","'+sv_lang+'","'+sv_desc+'");'
 		#print sql
 		self.cursor.execute(sql)
 		sv_id = self.conn.insert_id()
 		self.conn.commit()
 		return str(sv_id)
 	def updatesv_url(self,sv_id,sv_url):
-		sql = 'update svtb set sv_url= "'+sv_url+'" where sv_id = "'+sv_id+'"'
+		sql = 'update sv_tb set sv_url= "'+sv_url+'" where sv_id = "'+sv_id+'"'
 		self.cursor.execute(sql)
 		self.conn.commit()
-	def insertsvargtb(self,sv_id,arg_index,type_id):
-		sql = 'insert into svargtb(sv_id,arg_index,type_id) values ("'+sv_id+'","'+str(arg_index)+'","'+type_id+'");'
+	def insertsvargtb(self,arg_name,sv_id,arg_type_id,arg_index,arg_direct):
+		sql = 'insert into sv_arg_type_tb(arg_name,sv_id,arg_type_id,arg_index,arg_direct) values ("'+arg_name+'","'+sv_id+'","'+arg_type_id+'","'+arg_index+'","'+arg_direct+'");'
 		self.cursor.execute(sql)
 		self.conn.commit()
+	def querySvs(self):
+		sql = 'select sv_tb.sv_id as sv_id,sv_name,authority_type,sv_url,vm_id,user_id,sv_lang,sv_desc,arg_name,sv_arg_type_tb.arg_type_id as arg_type_id,arg_index,arg_direct,arg_type_name from sv_tb,sv_arg_type_tb,arg_type_tb where sv_tb.sv_id=sv_arg_type_tb.sv_id and sv_arg_type_tb.arg_type_id = arg_type_tb.arg_type_id order by sv_id,arg_index;'
+		return self.cursor.execute(sql)
+			
 	def close(self):
 		self.cursor.close()
 		self.conn.close()
