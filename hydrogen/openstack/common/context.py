@@ -1,4 +1,4 @@
-from openstack.common import uuidutils
+from hydrogen.openstack.common import uuidutils
 class RequestContext(object):
 
     """Helper class to represent useful information about a request context.

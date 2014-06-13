@@ -1,5 +1,5 @@
 #/bin/python
-from v1.controllers import Controller
+from hydrogen.v1.controllers import Controller
 from os import environ as env
 import keystoneclient.v2_0.client as ksclient
 #class Controller(object):

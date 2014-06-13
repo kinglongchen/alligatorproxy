@@ -1,5 +1,5 @@
 #!/bin/python
-from v1 import wsgi
+from hydrogen.v1 import wsgi
 import controllers
 class Public():
 	def add_routes(self,mapper):

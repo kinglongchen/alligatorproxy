@@ -17,7 +17,7 @@
 Hydrogen base exception handling.
 """
 
-from openstack.common import excutils
+from hydrogen.openstack.common import excutils
 
 
 class HydrogenException(Exception):

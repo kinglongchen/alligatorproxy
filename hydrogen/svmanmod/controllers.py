@@ -1,6 +1,8 @@
 #!/bin/python
-from v1.controllers import Controller
-from common.vmmanmod_client import get_vm_ip
+from hydrogen.v1.controllers import Controller
+from common.rmsvman import RmSVManClass
+from common import db
+import cgi
 #class Controller(object):
 #	def default(self,req,id):
 #		print "Start"
@@ -8,16 +10,18 @@ from common.vmmanmod_client import get_vm_ip
 #		print "End"
 ##		return "Action Not Define!!!"
 class Tenant(Controller):
-    def __init__(self):
-        print "ControllerTest!!!!"
-    def get_projects_for_token(self,req):
-          print "req",req
-          return {
+	def __init__(self):
+		print "ControllerTest!!!!"
+	def get_projects_for_token(self,req):
+		print "req",req
+		return {
             'name': "test",
             'properties': "test"
         }
 class ServiceMan(Controller):
 	def __init__(self):
+		self.db_session
+		self.rmsvMan = RmSVManClass(self.db_session)
 		print "ListName!!!"
 	'''
 	def get_html(self):
@@ -28,99 +32,151 @@ class ServiceMan(Controller):
 		user_id = req.environ['HTTP_X_USER_ID']
 		user_name = req.environ['HTTP_X_USER_NAME'] 
 		user_role = req.environ['HTTP_X_ROLES']
-		db_session=environ['db_session']
+		self.db_session=req.environ['db_session']
+		svs_data = db.getSvsInfo4All(self.db_session)
 		svs_json = {}
-		svs_data = db_session.querySvs()
-
+		svs = []
+		for sv_data in svs_data:
+			sv={}
+			sv['sv_id']=sv_data['sv_id']
+			sv['sv_name']=sv_data['sv_name']
+			sv['authority_type']=sv_data['authority_type']
+			sv['sv_url']=sv_data['sv_url']
+			sv['vm_id']=sv_data['vm_id']
+			sv['user_id']=sv_data['user_id']
+			sv['sv_lang']=sv_data['sv_lang']
+			sv['sv_desc']=sv_data['sv_desc']
+			svs.append(sv)
+		svs_json['svs']=svs
+		return svs
+	def show(self,req,id):
+		#print "START"
+		#print id
+# 		print "END"
+# 		return "Have id"+id
+		user_id = req.environ['HTTP_X_USER_ID']
+		user_name = req.environ['HTTP_X_USER_NAME'] 
+		user_role = req.environ['HTTP_X_ROLES']
+		self.db_session=req.environ['db_session']
+		sv_data_list = db.getSvInfo4ID(self.db_session, id)
+		
+		sv_json={}
 		input_args=[]
 		input_arg={}
 		output_args=[]
 		output_arg={}
 		svs = []
 		sv={}
-		sv_id = -1
-		for sv_data in svs_data:
-			if sv_id != sv_data['sv_id']:
-				if sv_id != -1
-					sv['input_arg_types']=input_args
-					sv['output_arg_types']=output_args
-					svs.append(sv)
-					sv={}
-				sv['sv_id']=sv_data['sv_id']
-				sv['sv_name']=sv_data['sv_name']
-				sv['authority_type']=sv_data['authority_type']
-				sv['sv_url']=sv_data['sv_url']
-				sv['vm_id']=sv_data['vm_id']
-				sv['user_id']=sv_data['user_id']
-				sv['sv_lang']=sv_data['sv_lang']
-				sv['sv_desc']=sv_data['sv_desc']
-				sv_id=sv_data['sv_id']
+		
+		sv_data=sv_data_list[0]
+		sv['sv_id']=sv_data['sv_id']
+		sv['sv_name']=sv_data['sv_name']
+		sv['authority_type']=sv_data['authority_type']
+		sv['sv_url']=sv_data['sv_url']
+		sv['vm_id']=sv_data['vm_id']
+		sv['user_id']=sv_data['user_id']
+		sv['sv_lang']=sv_data['sv_lang']
+		sv['sv_desc']=sv_data['sv_desc']
+		
+		for sv_data in sv_data_list:
 			if sv_data['arg_direct'] == 0:
 				input_arg={}
+				input_arg['sv_arg_id']=sv_data['sv_arg_id']
 				input_arg['arg_name'] = sv_data['arg__name']
 				input_arg['arg_type_id'] = sv_data['arg_type_id']
 				input_arg['arg_index'] = sv_data['arg_index']
 				input_arg['arg_type_name'] = sv_data['arg_type_name']
-			input_args.append(input_arg)
+				input_args.append(input_arg)
 			if sv_data['arg_direct'] == 1:
 				output_arg={}
+				output_arg['sv_arg_id']=sv_data['sv_arg_id']
 				output_arg['arg_name'] = sv_data['arg__name']
 				output_arg['arg_type_id'] = sv_data['arg_type_id']
 				output_arg['arg_index'] = sv_data['arg_index']
 				output_arg['arg_type_name'] = sv_data['arg_type_name']
-			output_args.append(output_arg)
-		svs_json['svs']=svs
+				output_args.append(output_arg)
+		
+		sv['input_arg_types']=input_args
+		sv['output_arg_types']=output_args
+		sv_json['sv']=sv
 		return svs
-	def show(self,req,id):
-		print "START"
-		print id
-		print "END"
-		return "Have id"+id
+		
 	def create(self,req,body=None):
 		environ = req.environ
 		user_id = environ['HTTP_X_USER_ID']
-		user_name = environ['HTTP_X_USER_NAME']
-		user_role = environ['HTTP_X_ROLES']
-		db_session=environ['db_session']
+		self.db_session=environ['db_session']
 		# need to upgrade to use permission engine
-		if user_role == 'nuser'
-		return "you have no permission to upload service"
+		'''
+		if user_role == 'nuser':
+			return "you have no permission to upload service"
+		'''
+		#登记服务的基本信息到sv_tb中
 		try:
 			request_body_size = int(environ.get('CONTENT_LENGTH',0))
 		except ValueError:
 			request_body_size=0
-		fileds=cgi.FieldStorage(environ["wsgi.input"],environ=environ)
-		sv_name = fileds['svname'].value
-		vm_id = fileds['vm_id'].value
-		sv_lang=fileds['sv_lng'].value
-		sv_desc=fileds['sv_desc'].value
-		#insert sv_tb table about service information
-		sv_id=db_session.insertsvtb(sv_name,vm_id,user_id,sv_lang,sv_desc)	
+		#fileds=cgi.FieldStorage(environ["wsgi.input"],environ=environ)
 		
-		#update the sv_url about the service information		
-		vm_ip = get_vm_ip(vm_id) #obtain vm ip addr
-		sv_url = 'http://'+vm_ip+":8091/v1/svs/"+sv_id
-		db_session.updatesv_url(sv_id,sv_url)
+		#用于测试的代码段：
+		fileds={}
+		
+		
+		
+		#insert sv_tb table about service information
+		sv_id=db.addSvInfo2TB(self.db_session, user_id, fileds)
+		
+		#登记服务的参数信息到sv_arg_type_tb中
 		#insert service arg information into sv_arg_type_tb table
-		input_arg_name_arr=files['input_arg_names'].value.split(';')
-		input_arg_index = 0
-		for input_arg_name in input_arg_name_arr:
-			f_arg_name="input_arg_name"+str(input_arg_index)
-			arg_type_id=fileds[f_arg_name].value
-			db_session.insertsvargtb(input_arg_name,str(sv_id),arg_type_id,input_arg_index,'0')
-			input_arg_index+=1
-			
-		output_arg_name_arr=files['output_arg_names'].value.split(';')
-		output_arg_index=0
-		for output_arg_name in output_arg_name_arr
-			f_arg_name="output_arg_name"+str(output_arg_index)
-			arg_type_id=fileds[f_arg_name].value	
-			db_session.insertsvargtb(output_arg_name,str(sv_id),arg_type_id,output_arg_index,'1')
-			output_arg_index+=1
-
-		sv_filename=sv_id+"."+fileds['svfile'].filename.split('.')[-1].strip()
-		contenttype = envrion['CONTENT_TYPE']
-		boundary=contenttype.split(';')[-1].split("=")[-1].strip()
-		sv_data = self.multipartencode.encode(sv_filename,fileds['svfile'],boundary)
-		#upload service to the vm
+		
+		db.addSvInputArg2TB(self.db_session, sv_id, fileds)
+		
+		db.addSvOutputArg2TB(self.db_session, sv_id, fileds)
+		
+		#将文件上传到虚拟机
+		contenttype = environ['CONTENT_TYPE']
+		sv_file = fileds['svfile']
+		vm_id = fileds['vm_id'].value
+		sv_url=self.rmsvMan.addSv2Vm(vm_id,sv_id, sv_file,contenttype)
+		#将更新sv_tb数据库中年sv_url信息
+		db.updatedSvUrl(self.db_session, sv_id, sv_url)
+		
 		return 'service upload successfully!!!'
+	def destory(self,req,id):
+		#1.获取服务所在的虚拟机
+		#2.调用删除命令，删除虚拟机上的服务
+		#3.删除sv_arg_type_tb数据库与该服务相关的信息，
+		#4.删除sv_tb上与该服务相关的数据
+		
+		#删除远程虚拟机上的服务
+		environ = req.environ
+		user_id = environ['HTTP_X_USER_ID']
+		user_name = environ['HTTP_X_USER_NAME']
+		user_role = environ['HTTP_X_ROLES']
+		self.db_session=environ['db_session']
+		self.rmsvMan.deleteSvOnVM(id);
+		#删除本地sv_arg_type_tb上的数据
+		db.deleteSvInfoOnTB(self.db_session,id)
+		#删除本地sv_tb上的数据
+		db.deleteSvAllArgOnTB(self.db_session,id)
+		
+	def update(self,req,body,id):
+		environ = req.environ
+		user_id = environ['HTTP_X_USER_ID']
+		user_name = environ['HTTP_X_USER_NAME']
+		user_role = environ['HTTP_X_ROLES']
+		self.db_session=environ['db_session']
+		#修改sv_arg_type_tb表
+		input_arg_types=body.pop('input_arg_types')
+		for key in input_arg_types.keys():
+			db.updateSvArgtype(self.db_session,key,input_arg_types['key'])
+		output_arg_types=body.pop('output_arg_types')
+		for key in output_arg_types.keys():
+			db.updateSvArgtype(self.db_session, key, input_arg_types['key'])
+		
+		#修改sv_tb表
+		db.updateSvTB(self.db_session, id, body)
+			
+			
+			
+		
+		
