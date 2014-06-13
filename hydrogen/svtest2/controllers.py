@@ -1,7 +1,7 @@
 #!/bin/python
-from hydrogen.v1.controllers import Controller
-from hydrogen import policy
-from hydrogen.common import exceptions
+from v1.controllers import Controller
+import policy
+from common import exceptions
 class Hello(Controller):
 	def index(self,req):
 		context= req.environ['hydrogen.context']
