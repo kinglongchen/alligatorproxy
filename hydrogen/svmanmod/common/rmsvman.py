@@ -1,5 +1,6 @@
+# encoding: utf-8
 '''
-Created on 2014Äê6ÔÂ11ÈÕ
+Created on 2014ï¿½ï¿½6ï¿½ï¿½11ï¿½ï¿½
 
 @author: sony
 '''
@@ -13,19 +14,16 @@ class RmSVManClass(object):
 		self.multipartencode=MultiPartEncode()
 		
 	def upload_file(self,vm_ip,contenttype,data):
-		r = urllib2.Request("http://"+vm_ip+":8089/fileupload.app")
+		r = urllib2.Request("http://"+vm_ip+":8091/filedeploy")
 		r.add_unredirected_header('Content-Type',contenttype)
 		r.add_data(data)
 		u = urllib2.urlopen(r)
 		return u
 
-	def delete_file(self,vm_ip):
-		'''
-		req_url=""#webseverµ÷ÓÃurl
-		r.urllib2.Request(req_url)
-		u=urllib2.urlopen(r)
-		return u
-		'''
+	def delete_file(self,vm_ip,sv_id):
+		r = urllib2.Request("http://"+vm_ip+":8091/fileundeploy/"+sv_id)
+		return urllib2.urlopen(r)
+		
 		pass
 	def addSv2Vm(self,vm_id,sv_id,sv_file,contenttype):
 		vm_ip=vmmanmod_client.get_vm_ip(vm_id)
@@ -39,8 +37,11 @@ class RmSVManClass(object):
 		return sv_url
 		
 	def deleteSvOnVM(self,id):
-		#1.¸ù¾Ýid»ñµÃ·þÎñËùÔÚvm
-		#2.µ÷ÓÃÔ¶³Ì´úÀí--Ò»¸öwebServer--É¾³ýÔ¶³ÌvmÉÏµÄ·þÎñ³ÌÐò
+		#1.ï¿½ï¿½ï¿½idï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vm
+		#2.ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ì´ï¿½ï¿½ï¿½--Ò»ï¿½ï¿½webServer--É¾ï¿½ï¿½Ô¶ï¿½ï¿½vmï¿½ÏµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		'''
 		sv_vmip=db.getSvVmip(self.db_session, id)
 		self.delete_file(sv_vmip)
-		
+		'''
+		print 'delete sv On VM successuflly!!!'
+		return 'ture'

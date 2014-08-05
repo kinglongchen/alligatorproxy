@@ -1,5 +1,6 @@
+# encoding: utf-8
 '''
-Created on 2014Äê6ÔÂ11ÈÕ
+Created on 2014ï¿½ï¿½6ï¿½ï¿½11ï¿½ï¿½
 
 @author: sony
 '''
@@ -15,7 +16,8 @@ def getSvsInfo4All(db_session):
 	return db_session.query(sql)
 
 def getSvInfo4ID(db_session,id):
-	sql = 'select sv_tb.sv_id as sv_id,sv_name,authority_type,sv_url,vm_id,user_id,sv_lang,sv_desc,arg_name,sv_arg_type_tb.arg_type_id as arg_type_id,arg_index,arg_direct,arg_type_name from sv_tb,sv_arg_type_tb,arg_type_tb where sv_id='+str(id)+' sv_tb.sv_id=sv_arg_type_tb.sv_id and sv_arg_type_tb.arg_type_id = arg_type_tb.arg_type_id order by sv_id,arg_index;'
+	sql = 'select sv_tb.sv_id as sv_id,sv_name,authority_type,sv_url,vm_id,user_id,sv_lang,sv_desc,sv_arg_id,arg_name,sv_arg_type_tb.arg_type_id as arg_type_id,arg_index,arg_direct,arg_type_name from sv_tb,sv_arg_type_tb,arg_type_tb where sv_tb.sv_id='+str(id)+' and sv_tb.sv_id=sv_arg_type_tb.sv_id and sv_arg_type_tb.arg_type_id = arg_type_tb.arg_type_id order by sv_id,arg_index;'
+	print sql
 	return db_session.query(sql)
 
 def addSvInfo2TB(db_session,user_id,fileds):
@@ -33,12 +35,15 @@ def addSvArgInfo2TB(db_session,sv_id,fileds,arg_direct=0):
 	if arg_direct==1:
 		arg_name_key_prefix = 'output_arg_name'
 		arg_names_key = 'output_arg_names'
-	arg_index = 0;
+	arg_index = 0
 	arg_names=fileds[arg_names_key].value.split(';')
 	for arg_name in arg_names:
 		arg_name_key=arg_name_key_prefix+str(arg_index)
 		arg_type_id=fileds[arg_name_key].value
-		sql = 'insert into sv_arg_type_tb(arg_name,sv_id,arg_type_id,arg_index,arg_direct) values ("'+arg_name+'","'+sv_id+'","'+arg_type_id+'","'+arg_index+'","'+arg_direct+'");'
+		sql = 'insert into sv_arg_type_tb(arg_name,sv_id,arg_type_id,arg_index,arg_direct) values ("'+arg_name+'","'+str(sv_id)+'","'+arg_type_id+'","'+str(arg_index)+'","'+str(arg_direct)+'");'
+		print arg_name
+		print arg_name_key
+		print sql
 		db_session.insert(sql)
 		arg_index+=1
 		
@@ -52,13 +57,14 @@ def addSvOutputArg2TB(db_session,sv_id, fileds):
 	
 	
 def deleteInfoOnTB(db_session,id,tb):
-	sql="delete form "+str(tb)+" where sv_id="+id
+	sql='delete from '+str(tb)+' where sv_id="'+str(id)+'"'
+	print sql
 	db_session.delete(sql)
 	
 def deleteSvInfoOnTB(db_session,sv_id):
 	deleteInfoOnTB(db_session, sv_id,'sv_tb')
 	
-def deleteSvAllArgOnTB(db_session,sv_id):
+def deleteSvArg4IDOnTB(db_session,sv_id):
 	deleteInfoOnTB(db_session, sv_id,'sv_arg_type_tb')
 	
 def updateSvOnTB(db_session,id,tb):
@@ -77,7 +83,7 @@ def updateSvTB(db_session,id,fileds):
 	sql = 'update sv_tb set '
 	for key in fileds.keys():
 		sql+= str(key)+'='+str(fileds[key])+','
-	#É¾³ý×îºóÒ»¸ö¶ººÅ
+	#É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	sql=sql[:-1]
 	sql+=' where sv_id='+str(id)
 	db_session.update(sql)

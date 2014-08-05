@@ -8,13 +8,13 @@ class Mysql(object):
 	def __init__(self):
 		self.conn = ''
 		self.cursor  = ''
-	def connect(self, host='localhost', user='root', passwd='12345', db='sc', charset='utf8'):
+	def connect(self, host='192.168.0.12', user='root', passwd='12345', db='sv_db', charset='utf8'):
 		try:
 			self.conn = MySQLdb.connect(host, user, passwd, db)
 		except Exception, e:
 			print e
 			sys.exit()
-		self.cursor = self.conn.cursor()
+		self.cursor = self.conn.cursor(MySQLdb.cursors.DictCursor)
 	
 	def execute4DML(self,sql):
 		self.cursor.execute(sql)
@@ -22,7 +22,8 @@ class Mysql(object):
 		self.conn.commit()
 		return id
 	def execute4DQL(self,sql):
-		return self.cursor.execute(sql)
+		self.cursor.execute(sql)
+		return self.cursor.fetchall()
 	def query(self,sql):
 		return self.execute4DQL(sql)
 	def insert(self, sql):
@@ -41,6 +42,12 @@ class Mysql(object):
 	def close(self):
 		self.cursor.close()
 		self.conn.close()
+		
+# db = Mysql()
+# db.connect()
+# rs = db.query('select * from sv_tb')
+# for r in rs:
+# 	print r
 	#def __del__(self):
 	#	testfile=open('/printtxt.txt','w')
 	#	stdout=sys.stdout

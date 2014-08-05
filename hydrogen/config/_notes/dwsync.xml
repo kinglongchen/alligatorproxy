@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="policy.json" server="192.168.0.12//root/alligator/hydrogen/" local="130468761060220620" remote="130470967910000000" Dst="0" />
+<file name="policy.json.bk" server="192.168.0.12//root/alligator/hydrogen/" local="130468761060300694" remote="130470967910000000" Dst="0" />
+<file name="policy.json" server="192.168.0.13//root/alligatorproxy/" local="130468761060220000" remote="130473545200000000" Dst="0" />
+<file name="policy.json.bk" server="192.168.0.13//root/alligatorproxy/" local="130468761060300000" remote="130473545200000000" Dst="0" />
+<file name="policy.json" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468761060220000" remote="130473547090000000" Dst="0" />
+<file name="policy.json.bk" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468761060300000" remote="130473547090000000" Dst="0" />
+<file name="site_nginx.conf" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130499670954238365" remote="130499671000000000" Dst="0" />
+<file name="uwsgi_params" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130493665280000000" remote="130493665280000000" Dst="0" />
+<file name="site_uwsgi.ini" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130499657639139983" remote="130499658080000000" Dst="0" />
+</dwsync>

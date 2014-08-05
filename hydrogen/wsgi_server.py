@@ -2,9 +2,9 @@
 from paste.deploy import loadapp
 import os
 import sys
-sys.path.append('.')
+sys.path.append('..')
 HOST = ''
-PORT = 8089
+PORT = 8091
 config = "python_paste.ini"
 appname = "common"
 wsgi_app = loadapp("config:%s" % os.path.abspath(config), appname)
