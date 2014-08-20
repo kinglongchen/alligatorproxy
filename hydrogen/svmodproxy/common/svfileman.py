@@ -6,6 +6,7 @@ Created on 2014年6月14日
 '''
 import os
 from hydrogen.svmodproxy.common import exceptions
+from hydrogen.common.exceptions import NUllResourceIDException
 SERVICE_FILE_PATH='/var/service/'
 svtypedic={'py':'python/','svc':'svc/'}
 #svmidfiletype_dict={'python':['pyc']}
@@ -46,7 +47,7 @@ class SvFileMan(object):
 			if svfilepaths:
 				break
 		if not svfilepaths:
-			raise exceptions.exceptions.NUllResourceIDException(id=sv_id)
+			raise NUllResourceIDException(id=sv_id)
 		return svfilepaths
 	
 	

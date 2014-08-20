@@ -7,7 +7,8 @@ Created on 2014��6��30��
 from hydrogen.svmodproxy.svcallmod.common import exceptions
 import sys
 from hydrogen.svmodproxy.svcallmod.common import service
-
+from hydrogen.common.exceptions import NUllResourceIDException
+from hydrogen.svmodproxy.svcallmod.common.exceptions import PythonServiceExcuteException
 
 # class SvModMan(object):
 # 	def __init__(self):
@@ -43,11 +44,11 @@ class PythonSv(service.Service):
 		if modname in self.modlist.keys():
 			self.modlist[modname]+=1
 		else:
-			self.modlist['modname']=0
+			self.modlist['modname']=1
 		try:
 			svmod=__import__(modname)
 		except ImportError:
-				raise exceptions.NoSvModException(sv_id=modname)
+			svmod = None
 		return svmod
 	
 	def __deletemod(self,modname):
@@ -60,13 +61,22 @@ class PythonSv(service.Service):
 	def __modmandemo(self):
 		pass
 	
-	def call(self,svfilename,*args,**kwargs):
-		try:
-			svfilemod=svfilename.split('/')[-1].strip().split('.')[0].strip()
-		except exceptions.HydrogenException,e:
-			return e.msg
+	def excute(self,svfilename,*args,**kwargs):
+		svfilemod=svfilename.split('/')[-1].strip().split('.')[0].strip()
 		sv=self.__importmod(svfilemod)
-		return sv.main(*args,**kwargs)
+		if not sv:
+			raise NUllResourceIDException(id=sv)
+		try:
+			rs = sv.main(*args,**kwargs)
+		except Exception,e:
+			raise exceptions.PythonServiceExcuteException(e)
+			
+		return rs
+	
+	'''
+	call 是被放弃的方法
+	'''
+	call=excute
 	
 # 
 # def call(svfilename,*args,**kwargs):

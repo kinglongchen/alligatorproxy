@@ -1,15 +1,17 @@
 #!/bin/python
-from v1.controllers import Controller
+from hydrogen.v1.controllers import Controller
+import time
 #class Controller(object):
 #	def default(self,req,id):
 #		print "Start"
 #		print id
 #		print "End"
 ##		return "Action Not Define!!!"
-		
+tid=id
+tv=0
 class Tenant(Controller):
     def __init__(self):
-        print "ControllerTest!!!!"
+    	pass
     def get_projects_for_token(self,req):
           print "req",req
           return {
@@ -18,13 +20,20 @@ class Tenant(Controller):
         }
 class TestDemo(Controller):
 	def __init__(self):
-		print "ListName!!!"
+		self.tv=0
 	def index(self,req):
-		db_session=req.environ['db_session']
-		
-		return "list all resources"
+# 		global self.tv
+		print self.tv
+		print tid(self.tv)
+		time.sleep(10)
+		self.tv+=1
+		return 'index'
 	def show(self,req,id):
-		print "START"
-		print id
-		print "END"
-		return "Have id"+id
+# 		global tv
+		print self.tv
+		print tid(self.tv)
+		return 'show'
+
+# td = TestDemo()
+# td.index(None)
+# td.show(None,None)

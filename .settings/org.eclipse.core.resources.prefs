@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//hydrogen/Server.py=utf-8
 encoding//hydrogen/__init__.py=utf-8
 encoding//hydrogen/common/db.py=utf-8
+encoding//hydrogen/common/logger.py=utf-8
 encoding//hydrogen/setup.sh=UTF-8
 encoding//hydrogen/svmanmod/common/db.py=utf-8
 encoding//hydrogen/svmanmod/common/rmsvman.py=utf-8

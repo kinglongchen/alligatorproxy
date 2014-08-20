@@ -18,4 +18,10 @@
 <file name="router.pyc" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468751733080000" remote="130473547110000000" Dst="0" />
 <file name="wsgi.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468751733080000" remote="130473547110000000" Dst="0" />
 <file name="wsgi.pyc" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468751733090000" remote="130473547110000000" Dst="0" />
+<file name="router.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751733070000" remote="130516815080000000" Dst="0" />
+<file name="router.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751733080000" remote="130516815080000000" Dst="0" />
+<file name="wsgi.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751733080000" remote="130516815080000000" Dst="0" />
+<file name="wsgi.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751733090000" remote="130516815080000000" Dst="0" />
+<file name="__init__.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751733050000" remote="130516815080000000" Dst="0" />
+<file name="__init__.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751733060000" remote="130516815080000000" Dst="0" />
 </dwsync>

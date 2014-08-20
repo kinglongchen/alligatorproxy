@@ -9,5 +9,9 @@ from hydrogen.common import exceptions
 class SvModProxyException(exceptions.HydrogenException):
 	pass
 
-class NoServiceError(SvModProxyException):
-	message = 'No Service named with the id:%(sv_id)s'
+
+class ServiceExecutorException(SvModProxyException):
+	pass
+
+class UnknownServiceExecutorException(ServiceExecutorException):
+	message="Unkown Service suffix:%(suffix)s"

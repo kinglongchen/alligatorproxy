@@ -7,4 +7,10 @@
 <file name="__init__.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130473556228147561" remote="130473556270000000" Dst="0" />
 <file name="svfileman.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130498974662029864" remote="130498977620000000" Dst="0" />
 <file name="exceptions.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130489394564249896" remote="130489395150000000" Dst="0" />
+<file name="exceptions.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517630583842362" remote="130517828890000000" Dst="0" />
+<file name="svfileman.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517622978583572" remote="130517828900000000" Dst="0" />
+<file name="__init__.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759988010015" remote="130516815030000000" Dst="0" />
+<file name="exceptions.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517891294174628" remote="130517944180000000" Dst="0" />
+<file name="__init__.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517011332877706" remote="130517024020000000" Dst="0" />
+<file name="svfileman.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517012306532215" remote="130517830730000000" Dst="0" />
 </dwsync>

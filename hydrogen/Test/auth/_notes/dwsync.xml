@@ -5,5 +5,7 @@
 <file name="get_token.py" server="192.168.0.13//root/alligatorproxy/" local="130468751732700000" remote="130473545210000000" Dst="0" />
 <file name="openrc.sh" server="192.168.0.13//root/alligatorproxy/" local="130468761059550000" remote="130473545210000000" Dst="0" />
 <file name="get_token.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468751732700000" remote="130489311220000000" Dst="0" />
-<file name="openrc.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468761059550000" remote="130489311220000000" Dst="0" />
+<file name="openrc.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130489311220000000" remote="130489311220000000" Dst="0" />
+<file name="get_token.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130468751732700000" remote="130516815060000000" Dst="0" />
+<file name="openrc.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130489311220000000" remote="130516815060000000" Dst="0" />
 </dwsync>

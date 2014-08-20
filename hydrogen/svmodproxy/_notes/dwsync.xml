@@ -9,4 +9,8 @@
 <file name="__init__.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468751732880000" remote="130473547100000000" Dst="0" />
 <file name="controllers.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130499672172206770" remote="130499673100000000" Dst="0" />
 <file name="routers.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130492755610387078" remote="130492755650000000" Dst="0" />
+<file name="controllers.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530008866816988" remote="130530009030000000" Dst="0" />
+<file name="routers.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130523191280325132" remote="130523193670000000" Dst="0" />
+<file name="__init__.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759987979996" remote="130516815040000000" Dst="0" />
+<file name="__init__.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517011332857692" remote="130517024020000000" Dst="0" />
 </dwsync>

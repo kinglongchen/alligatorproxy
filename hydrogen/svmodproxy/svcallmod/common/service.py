@@ -10,6 +10,6 @@ class Service(object):
 	@abstractmethod
 	def call(self):
 		pass
-	@abstractmethod
-	def stop(self):
-		pass
+# 	@abstractmethod
+# 	def stop(self):
+# 		pass

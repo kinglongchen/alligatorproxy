@@ -25,4 +25,14 @@
 <file name="utils.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130468761060490000" remote="130473547090000000" Dst="0" />
 <file name="utils.pyc" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130470968030000000" remote="130473553950000000" Dst="0" />
 <file name="db.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130501381207433472" remote="130501413110000000" Dst="0" />
+<file name="db.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759987579712" remote="130516815010000000" Dst="0" />
+<file name="dbop.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516771443576455" remote="130516815010000000" Dst="0" />
+<file name="exceptions.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516775068798802" remote="130516815010000000" Dst="0" />
+<file name="exceptions.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517011332977781" remote="130517133780000000" Dst="0" />
+<file name="get_all_sv.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759987599753" remote="130516815010000000" Dst="0" />
+<file name="utils.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759987649759" remote="130516815010000000" Dst="0" />
+<file name="utils.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130470968030000000" remote="130517133780000000" Dst="0" />
+<file name="__init__.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759987549715" remote="130516815010000000" Dst="0" />
+<file name="__init__.pyc" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517011332917739" remote="130517133780000000" Dst="0" />
+<file name="logger.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130517891871033028" remote="130517942990000000" Dst="0" />
 </dwsync>
