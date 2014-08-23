@@ -53,13 +53,13 @@ class VMSVManProxy(Controller):
 			kwargs.update(req.GET.dict_of_lists())
 		try:
 			rs=self.svinstanc_mgr.service_call(sv_inst_id, kwargs)
-			print rs
+			rs = json.dumps(rs)
 			res.body=rs
 		except NUllResourceIDException,e:
 			Logger.error(e.msg)
 			res.status=404
 		except Exception,e:
-			Logger.error(e.msg)
+			Logger.error(e.message)
 			res.status=505
 		return res
 	

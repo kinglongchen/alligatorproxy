@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="sendfile.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130473595890000000" remote="130473595890000000" Dst="0" />
-<file name="openrc.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130473560660000000" remote="130473560660000000" Dst="0" />
-<file name="test.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130473594950000000" remote="130473594950000000" Dst="0" />
-<file name="get_token.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130473560660000000" remote="130473560660000000" Dst="0" />
-<file name="deletefile.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130473602940000000" remote="130473602940000000" Dst="0" />
-<file name="deletefile.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130473602940000000" remote="130516815070000000" Dst="0" />
-<file name="get_token.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130473560660000000" remote="130516815070000000" Dst="0" />
-<file name="openrc.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130473560660000000" remote="130516815070000000" Dst="0" />
-<file name="sendfile.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130473595890000000" remote="130516815070000000" Dst="0" />
-<file name="test.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130473594950000000" remote="130516815070000000" Dst="0" />
+<file name="sendfile.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130530047867676804" remote="130530615140000000" Dst="0" />
+<file name="openrc.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130530047867666991" remote="130530615140000000" Dst="0" />
+<file name="test.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130530047867676804" remote="130530615140000000" Dst="0" />
+<file name="get_token.py" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130530047867656798" remote="130530615140000000" Dst="0" />
+<file name="deletefile.sh" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130530047867646780" remote="130530615140000000" Dst="0" />
+<file name="deletefile.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530047867646780" remote="130530594840000000" Dst="0" />
+<file name="get_token.py" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530047867656798" remote="130530594840000000" Dst="0" />
+<file name="openrc.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530047867666991" remote="130530594840000000" Dst="0" />
+<file name="sendfile.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530047867676804" remote="130530594840000000" Dst="0" />
+<file name="test.sh" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530047867676804" remote="130530594840000000" Dst="0" />
 </dwsync>

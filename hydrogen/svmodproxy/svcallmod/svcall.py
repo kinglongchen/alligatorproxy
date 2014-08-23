@@ -22,7 +22,7 @@ def svCall(sv_id,kwargs):
 	svcall=svexcmod_dic.get(svsuf)
 	if not svcall:
 		raise exceptions.UnknownServiceExecutorException(suffix = svsuf)
-	rs = svcall.call(svfilename,kwargs)
+	rs = svcall.call(svfilename,**kwargs)
 		#处理服务执行的错误情况
 	return rs
 	

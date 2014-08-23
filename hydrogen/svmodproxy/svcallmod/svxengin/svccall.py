@@ -7,9 +7,10 @@ Created on 2014年7月15日
 import xengin
 import sys
 import json
-
+from hydrogen.common.exceptions import HydrogenException
 from hydrogen.common import db
 from hydrogen.svmodproxy.svcallmod.common import service
+from hydrogen.common import logger
 
 class SvcCall(service.Service):
 	def call(self,svfilename,*args,**kwargs):
@@ -19,8 +20,11 @@ class SvcCall(service.Service):
 		svcf.close()
 		try:
 			rs = xengin.exc(svcj, kwargs)
-		except Exception,e:
+		except HydrogenException,e:
 			return e.msg
+		except Exception,e:
+			logger.error(e.message)
+			return e.message
 		return rs
 	
 	def stop(self):

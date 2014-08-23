@@ -8,7 +8,7 @@ from abc import ABCMeta,abstractmethod,abstractproperty
 class Service(object):
 	__metaclass__ = ABCMeta
 	@abstractmethod
-	def call(self):
+	def call(self,**kwargs):
 		pass
 # 	@abstractmethod
 # 	def stop(self):

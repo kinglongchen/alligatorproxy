@@ -10,16 +10,23 @@ import time
 import httplib2
 import json
 from hydrogen.common import db
-def request(sv_id,reqargs):
+from hydrogen.common import dbop
+from hydrogen.common.dbop import db_session
+def request(sv_id,sv_inst_id,reqargs):
 	reqargs=json.dumps(reqargs)
-	sv_id=str(sv_id)
-	svurl=db.get_sv_ip(sv_id)#   通过sv_id获取对应sv_id服务的URL
+	sv_inst_id=str(sv_inst_id)
+	
+	sv_inst_url = db_session.queryInfo(dbop.SV_INST_TB, ['call_url'],[{'sv_id':[sv_id]},{'id':[sv_inst_id]}])[0]['call_url']#   通过sv_id获取对应sv_id服务的URL
+	print sv_inst_url
+# 	svurl=db.get_sv_ip(sv_id)
 	httpClient=httplib2.Http()
-	resp,content=httpClient.request(svurl,'POST',body=reqargs,headers={'Content-Type':'application/json'})
-	print content
+	resp,content=httpClient.request(sv_inst_url,'POST',body=reqargs,headers={'Content-Type':'application/json'})
+	if resp.status!=200:
+		raise Exception('Service Error:(status:%s,sv_id:%s,id:%s)' %(resp.status,sv_id,sv_inst_id))
 	rsargs=json.loads(content)
 	return rsargs
-
+#################################################################################
+#####################################################################################
 # def request(sv_id,reqargs):
 # 	a=reqargs.get('a')
 # 	a+=100
@@ -35,11 +42,12 @@ def exc(svcj,reqargs):
 	key=svcj.keys()[0]
 	value=svcj.get(key,None)
 	if key == 'sv':
-		sv_id=value.get('id',None)
+		sv_id=value.get('sv_id',None)
+		id=value.get('id',None)
 		okwargs=value.get('okwargs',None)
 		if okwargs:
 			reqargs.update(okwargs)
-		reqargs=request(sv_id,reqargs)
+		reqargs=request(sv_id,id,reqargs)
 		return reqargs
 	
 	if key == 'sequence':
@@ -49,11 +57,13 @@ def exc(svcj,reqargs):
 	
 	if key == 'if':
 		ckey=value.get('ckey',None)
+		print ckey
 		if not ckey:
 			raise NullConditionError()
 		condition = reqargs.get(ckey,None)
 # 		if condition is None:
 # 			raise NullConditionError()
+		print condition
 		if condition == 'True' or condition == 'true' or condition is True:
 			svcsubj = value.get('true',None)
 		elif condition == 'False' or condition == 'false' or condition is False or condition is None:
@@ -128,10 +138,10 @@ svcj={'if':{'ckey':'ckey',
 '''
 svcj={
 	'sequence':[
-			{'sv':{'id':'1'}},
-			{'sv':{'id':'2'}},
-			{'sv':{'id':'3'}},
-			{'sv':{'id':'4'}}
+			{'sv':{'sv_id':,'id':'1'}},
+			{'sv':{'sv_id':,'id':'2'}},
+			{'sv':{'sv_id':,'id':'3'}},
+			{'sv':{'sv_id':,'id':'4'}}
 			]
 	
 	}
