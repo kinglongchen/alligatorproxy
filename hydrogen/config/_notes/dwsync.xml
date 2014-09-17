@@ -15,5 +15,5 @@
 <file name="site_uwsgi.ini" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530047867926979" remote="130530594800000000" Dst="0" />
 <file name="uwsgi_params" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130516759987709824" remote="130516815010000000" Dst="0" />
 <file name="hydrogen.conf" server="192.168.0.14//root/alligatorproxy/hydrogen/" local="130530605988089506" remote="130530606130000000" Dst="0" />
-<file name="hydrogen.conf" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130530605988089506" remote="130530615050000000" Dst="0" />
+<file name="hydrogen.conf" server="192.168.0.13//root/alligatorproxy/hydrogen/" local="130532447441838852" remote="130547032570000000" Dst="0" />
 </dwsync>
